@@ -1,0 +1,40 @@
+var Timer motionTimer = null
+
+rule "Turn on Zigbee Light 1 when motion detected"
+when
+    Item MQTT_Motion01 changed to ON
+then
+    logInfo("bridge", "MQTT motion detected, turning ON ZB_Light_1")
+    if (ZB_Light_1.state != ON) {
+        ZB_Light_1.sendCommand(ON)
+    }
+    if (motionTimer !== null) {
+        motionTimer.cancel
+        motionTimer = null
+    }
+end
+
+rule "Turn off Zigbee Light 1 when no motion for 30s"
+when
+    Item MQTT_Motion01 changed to OFF
+then
+    logInfo("bridge", "MQTT motion cleared, will turn OFF ZB_Light_1 after delay")
+    if (motionTimer !== null) {
+        motionTimer.cancel
+    }
+    motionTimer = createTimer(now.plusSeconds(30)) [ |
+        logInfo("bridge", "No motion for 30s, turning OFF ZB_Light_1")
+        if (ZB_Light_1.state != OFF) {
+            ZB_Light_1.sendCommand(OFF)
+        }
+        motionTimer = null
+    ]
+end
+
+rule "Log Zigbee device changes"
+when
+    Member of gVirtualDevices changed
+then
+    logInfo("zigbee", triggeringItem.name + " changed to " + triggeringItem.state)
+end
+

@@ -1,0 +1,34 @@
+Bridge mqtt:broker:mosquitto "MQTT Broker" [
+  host="mqtt",
+  port=1883,
+  secure=false,
+  clientID="openhab-mqtt",
+  qos=1,
+  retain=false
+] {
+  Thing topic tempSensor "MQTT Temp Sensor" @ "MQTT" {
+    Channels:
+      Type number : temperature "Temperature" [
+        stateTopic="sensors/temp1/state",
+        qos=1
+      ]
+  }
+
+  Thing topic humSensor "MQTT Humidity Sensor" @ "MQTT" {
+    Channels:
+      Type number : humidity "Humidity" [
+        stateTopic="sensors/hum1/state",
+        qos=1
+      ]
+  }
+
+  Thing topic motionSensor "MQTT Motion Sensor" @ "MQTT" {
+    Channels:
+      Type switch : motion "Motion" [
+        stateTopic="sensors/motion1/state",
+        on="ON",
+        off="OFF"
+      ]
+  }
+}
+

@@ -1,0 +1,4 @@
+Number MQTT_Temp01    "MQTT Temp [%.1f °C]"   <temperature> (gVirtualDevices) { channel="mqtt:topic:mosquitto:tempSensor:temperature" }
+Number MQTT_Hum01     "MQTT Hum [%.1f %%]"    <humidity>    (gVirtualDevices) { channel="mqtt:topic:mosquitto:humSensor:humidity" }
+Switch MQTT_Motion01  "MQTT Motion [%s]"      <motion>      (gVirtualDevices) { channel="mqtt:topic:mosquitto:motionSensor:motion" }
+

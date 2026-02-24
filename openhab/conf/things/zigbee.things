@@ -1,0 +1,39 @@
+Thing http:url:zigbeeGateway "Zigbee HTTP Gateway" [
+  baseURL="http://zigbee-sim:5000",
+  refresh=5
+] {
+  Channels:
+    Type switch : light1_state "ZB Light 1" [
+      stateExtension="/devices/zb_light_1",
+      stateTransformation="JSONPATH:$.state",
+      commandExtension="/devices/zb_light_1",
+      commandMethod="POST",
+      commandContentType="application/json",
+      commandTransformation="JSON:{\"state\":\"%s\"}",
+      onValue="ON",
+      offValue="OFF"
+    ]
+
+    Type switch : light2_state "ZB Light 2" [
+      stateExtension="/devices/zb_light_2",
+      stateTransformation="JSONPATH:$.state",
+      commandExtension="/devices/zb_light_2",
+      commandMethod="POST",
+      commandContentType="application/json",
+      commandTransformation="JSON:{\"state\":\"%s\"}",
+      onValue="ON",
+      offValue="OFF"
+    ]
+
+    Type switch : plug1_state "ZB Plug 1" [
+      stateExtension="/devices/zb_plug_1",
+      stateTransformation="JSONPATH:$.state",
+      commandExtension="/devices/zb_plug_1",
+      commandMethod="POST",
+      commandContentType="application/json",
+      commandTransformation="JSON:{\"state\":\"%s\"}",
+      onValue="ON",
+      offValue="OFF"
+    ]
+}
+

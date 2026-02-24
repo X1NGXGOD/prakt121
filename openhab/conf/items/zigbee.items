@@ -1,0 +1,6 @@
+Group gVirtualDevices "All Virtual Devices"
+
+Switch ZB_Light_1 "ZB Light 1 [%s]" <light>       (gVirtualDevices) { channel="http:url:zigbeeGateway:light1_state" }
+Switch ZB_Light_2 "ZB Light 2 [%s]" <light>       (gVirtualDevices) { channel="http:url:zigbeeGateway:light2_state" }
+Switch ZB_Plug_1  "ZB Plug 1 [%s]"  <poweroutlet> (gVirtualDevices) { channel="http:url:zigbeeGateway:plug1_state" }
+

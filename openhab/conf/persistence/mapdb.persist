@@ -1,0 +1,9 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    default = everyChange
+}
+
+Items {
+    gVirtualDevices* : strategy = everyChange, everyMinute, restoreOnStartup
+}
+

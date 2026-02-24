@@ -1,0 +1,15 @@
+sitemap home label="IoT Multi-Protocol Gateway"
+{
+    Frame label="MQTT Sensors" {
+        Text item=MQTT_Temp01
+        Text item=MQTT_Hum01
+        Text item=MQTT_Motion01
+    }
+
+    Frame label="Zigbee Devices (HTTP emulation)" {
+        Switch item=ZB_Light_1
+        Switch item=ZB_Light_2
+        Switch item=ZB_Plug_1
+    }
+}
+
